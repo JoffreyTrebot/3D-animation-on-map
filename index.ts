@@ -41,12 +41,20 @@ function createCube(): MapAnchor<THREE.Object3D> {
     return cube;
 }
 
-const geoPosition = mapView.getGeoCoordinatesAt(49.4431, 1.0993);
-geoPosition.altitude = 50;
 
-const cube = createCube();
-cube.anchor = geoPosition;
-mapView.mapAnchors.add(cube);
+function randomCubePosition() {
+    const geoPosition = mapView.getGeoCoordinatesAt(Math.floor(Math.random() * 49) + 1, Math.floor(Math.random() * 49) + 1);
+    geoPosition.altitude = 50;
+
+    const cube = createCube();
+    cube.anchor = geoPosition;
+    return cube;
+}
+
+for (var i = 0; i < 1000; i++) {
+    mapView.mapAnchors.add(randomCubePosition());
+}
+
 
 // make sure the map is rendered
 mapView.update();
