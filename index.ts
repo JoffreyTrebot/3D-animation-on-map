@@ -6,9 +6,10 @@
 
 import { GeoCoordinates,} from "@here/harp-geoutils";
 import { View } from "./View";
-import { Tile, DataSource, MapAnchor,} from "@here/harp-mapview";
+import { FeaturesDataSource } from "@here/harp-features-datasource";
 import THREE = require("three");
 import { cursorTo } from "readline";
+import * as cube from "./cube";
 
 const app = new View({
     canvas: document.getElementById("map") as HTMLCanvasElement
@@ -24,36 +25,16 @@ window.addEventListener("resize", () => {
     mapView.resize(window.innerWidth, window.innerHeight);
 });
 
-// center the camera to New York
+// center the camera to Rouen
 mapView.lookAt(new GeoCoordinates(49.4431, 1.0993), 1500, 40, 0);
 
-const scale = 100;
-const geometry = new THREE.BoxGeometry(1 * scale, 1 * scale, 1 * scale);
-const material = new THREE.MeshStandardMaterial({
-});
 
-function createCube(): MapAnchor<THREE.Object3D> {
-    const cube = new THREE.Object3D();
+// for (var i = 0; i < 1; i++) {
+//     mapView.mapAnchors.add(cube.randomCubePosition(mapView));
+// }
 
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.renderOrder = Number.MAX_SAFE_INTEGER;
-    cube.add(mesh);
-    return cube;
-}
-
-
-function randomCubePosition() {
-    const geoPosition = mapView.getGeoCoordinatesAt(Math.floor(Math.random() * 49) + 1, Math.floor(Math.random() * 49) + 1);
-    geoPosition.altitude = 50;
-
-    const cube = createCube();
-    cube.anchor = geoPosition;
-    return cube;
-}
-
-for (var i = 0; i < 1000; i++) {
-    mapView.mapAnchors.add(randomCubePosition());
-}
+const featuresDataSource = new FeaturesDataSource({ styleSetName: "geojson" });
+map.addDataSource(featuresDataSource);
 
 
 // make sure the map is rendered
