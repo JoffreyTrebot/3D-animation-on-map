@@ -26,7 +26,7 @@ window.addEventListener("resize", () => {
 });
 
 // center the camera to New York
-mapView.lookAt(new GeoCoordinates(40.70398928, -74.01319808), 1500, 40, 0);
+mapView.lookAt(new GeoCoordinates(49.4431, 1.0993), 1500, 40, 0);
 
 const geoJsonDataProvider = new GeoJsonDataProvider("test", {
     "type": "FeatureCollection",
@@ -243,6 +243,18 @@ mapView.addDataSource(geoJsonDataSource).then(() => {
     mapView.update();
 });
 
+const marker = cube.randomCubePosition(mapView);
+mapView.mapAnchors.add(marker);
 
-// make sure the map is rendered
+let longitude = 1.0993;
+
+function markerMove() {
+    longitude = longitude + 0.001;
+    marker.anchor = new GeoCoordinates(49.4431, longitude); 
+    mapView.update();
+
+}
+
 mapView.update();
+
+setInterval(markerMove, 1000);
