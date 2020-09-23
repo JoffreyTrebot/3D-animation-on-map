@@ -5,6 +5,7 @@
  */
 
 import { Theme } from "@here/harp-datasource-protocol";
+import { sphereProjection } from "@here/harp-geoutils";
 import { MapControls } from "@here/harp-map-controls";
 import { MapView } from "@here/harp-mapview";
 import { VectorTileDataSource } from "@here/harp-vectortile-datasource";
@@ -31,16 +32,20 @@ export class View {
     protected initialize(): MapView {
         const mapView = new MapView({
             canvas: this.canvas,
-            theme: this.theme,
+            projection: sphereProjection,
+            theme: "resources/berlin_tilezen_base_globe.json",
             decoderUrl: "decoder.bundle.js"
         });
 
         const dataSource = new VectorTileDataSource({
-            authenticationCode: "MDLDI0sEcPT8fIyH49IICWUmk_8mH-VBP5qnLmlMpH8"
+            authenticationCode: "MDLDI0sEcPT8fIyH49IICWUmk_8mH-VBP5qnLmlMpH8",
+            baseUrl: "https://vector.hereapi.com/v2/vectortiles/base/mc",
         });
+
         mapView.addDataSource(dataSource);
 
-        MapControls.create(mapView);
+        const a = MapControls.create(mapView);
+        a.maxTiltAngle = 90;
 
         return mapView;
     }
