@@ -1,5 +1,9 @@
 import { StyleSet, FeatureCollection } from "@here/harp-datasource-protocol";
 import { GeoJsonDataSource } from "@here/harp-geojson-datasource/lib/GeoJsonDataSource";
+
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
+import { MapAnchor, RenderEvent, MapViewEventNames  } from "@here/harp-mapview";
+import THREE = require("three");
 /*
  * Copyright (C) 2017-2020 HERE Europe B.V.
  * Licensed under Apache 2.0, see full license in LICENSE
@@ -26,7 +30,7 @@ window.addEventListener("resize", () => {
 });
 
 // center the camera to New York
-mapView.lookAt(new GeoCoordinates(49.4431, 1.0993), 1500000, 40, 0);
+mapView.lookAt(new GeoCoordinates(49.4431, 1.0993), 150, 40, 0);
 function getStyleSet(): StyleSet {
     return [
         {
@@ -291,27 +295,74 @@ mapView.addDataSource(geoJsonDataSource).then(() => {
     mapView.update();
 });
 
-const marker = cube.randomCubePosition(mapView);
-mapView.mapAnchors.add(marker);
+const clock = new THREE.Clock();
 
-let count = 0;
-function markerMove() {
-    if ((count < coordinates.length) && (geojson.features[0].geometry.type == "LineString")) {
-        geoJsonDataProvider.updateInput(updateTrack(geojson));
-        marker.anchor = updateMarkerPosition(count, coordinates);
-        count++;
-        mapView.update();
+let figure: MapAnchor<THREE.Group> | undefined;
+let mixer: THREE.AnimationMixer | undefined;
+const onLoad = (object: any) => {
+    mixer = new THREE.AnimationMixer(object);
+    console.log(object);
+
+    figure = object as THREE.Group;
+    figure.traverse((child: THREE.Object3D) => {
+        child.renderOrder = 10000;
+    });
+    figure.renderOrder = 10000;
+    figure.rotateX(Math.PI / 3);
+    const scale = 0.1;
+    figure.scale.set(1 * scale, 1 * scale, 1 * scale);
+    figure.name = "guy";
+
+    // snippet:harp_gl_threejs_add_animated-object_add_to_scene.ts
+    figure.anchor = new GeoCoordinates(49.4431, 1.0993);
+    // Make sure the object is rendered on top of labels
+    figure.overlay = true;
+    mapView.mapAnchors.add(figure);
+    // end:harp_gl_threejs_add_animated-object_add_to_scene.ts
+};
+
+const loader = new FBXLoader();
+loader.load("jet.fbx", onLoad);
+
+const onRender = (event: RenderEvent) => {
+    if (mixer) {
+        // snippet:harp_gl_threejs_add_animated-object_update_animation.ts
+        const delta = clock.getDelta();
+        mixer.update(delta);
+        // end:harp_gl_threejs_add_animated-object_update_animation.ts
     }
-}
+};
 
-function updateTrack(geojson) {
-    geojson.features[0].geometry.coordinates.push(coordinates[count]);
-    return geojson;
-}
+mapView.addEventListener(MapViewEventNames.Render, onRender);
+// end:harp_gl_threejs_add_animated-object_add_listener.ts
 
-function updateMarkerPosition(count, coordinates) {
-    return new GeoCoordinates(coordinates[count][1], coordinates[count][0]);
-}
-
+// snippet:harp_gl_threejs_add_animated-object_begin_animation.ts
+mapView.beginAnimation();
 mapView.update();
-setInterval(markerMove, 5000);
+
+
+
+// const marker = cube.randomCubePosition(mapView);
+// mapView.mapAnchors.add(marker);
+
+// let count = 0;
+// function markerMove() {
+//     if ((count < coordinates.length) && (geojson.features[0].geometry.type == "LineString")) {
+//         geoJsonDataProvider.updateInput(updateTrack(geojson));
+//         marker.anchor = updateMarkerPosition(count, coordinates);
+//         count++;
+//         mapView.update();
+//     }
+// }
+
+// function updateTrack(geojson) {
+//     geojson.features[0].geometry.coordinates.push(coordinates[count]);
+//     return geojson;
+// }
+
+// function updateMarkerPosition(count, coordinates) {
+//     return new GeoCoordinates(coordinates[count][1], coordinates[count][0]);
+// }
+
+// mapView.update();
+// setInterval(markerMove, 5000);
