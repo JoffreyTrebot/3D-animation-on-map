@@ -30,7 +30,7 @@ window.addEventListener("resize", () => {
 });
 
 // center the camera to New York
-mapView.lookAt(new GeoCoordinates(46.146875, -1.167189), 150, 40, 0);
+mapView.lookAt(new GeoCoordinates(46.144674392344434, -1.1624586582183838), 150, 40, 0);
 function getStyleSet(): StyleSet {
     return [
         {
@@ -115,150 +115,150 @@ const timestamps = [
     { timestamps: "2020-09-20T00:02:55Z" },
 ];
 
-const coordinates =  [
+const coordinates = [
     [
-        -22.8515625,
-        34.59704151614417
+        -1.1624586582183838,
+        46.144674392344434
     ],
     [
-        -21.4453125,
-        27.68352808378776
+        -1.1631774902343748,
+        46.14476359264681
     ],
     [
-        -23.90625,
-        20.632784250388028
+        -1.1637783050537107,
+        46.14487509282153
     ],
     [
-        -26.71875,
-        10.487811882056695
+        -1.1642181873321533,
+        46.145001459413194
     ],
     [
-        -24.609375,
-        5.266007882805498
+        -1.164851188659668,
+        46.145217025282456
     ],
     [
-        -23.203125,
-        0
+        -1.165452003479004,
+        46.14525419172632
     ],
     [
-        -19.6875,
-        -4.915832801313164
+        -1.1665141582489014,
+        46.14546975660592
     ],
     [
-        -20.390625,
-        -15.28418511407642
+        -1.1671149730682373,
+        46.14549948962654
     ],
     [
-        -23.90625,
-        -21.289374355860424
+        -1.1676299571990967,
+        46.14570762032106
     ],
     [
-        -28.125,
-        -32.249974455863295
+        -1.1680591106414795,
+        46.14593061662054
     ],
     [
-        -28.125,
-        -37.99616267972812
+        -1.1683380603790283,
+        46.14631714139977
     ],
     [
-        -27.421875,
-        -44.840290651397986
+        -1.1685740947723389,
+        46.146711096555
     ],
     [
-        -23.5546875,
-        -48.92249926375823
+        -1.1685740947723389,
+        46.147075316737464
     ],
     [
-        -18.984375,
-        -50.51342652633955
+        -1.1686062812805176,
+        46.14761049304159
     ],
     [
-        -9.4921875,
-        -51.17934297928927
+        -1.1687135696411133,
+        46.14795240851187
     ],
     [
-        -5.9765625,
-        -50.28933925329178
+        -1.1690139770507812,
+        46.14819026149943
     ],
     [
-        1.7578125,
-        -45.33670190996811
+        -1.1694753170013428,
+        46.14836865056563
     ],
     [
-        2.8125,
-        -41.244772343082076
+        -1.169818639755249,
+        46.14841324774184
     ],
     [
-        0.3515625,
-        -37.43997405227057
+        -1.1706125736236572,
+        46.148383516295034
     ],
     [
-        -5.2734375,
-        -33.7243396617476
+        -1.1719107627868652,
+        46.14809363384719
     ],
     [
-        -10.8984375,
-        -30.44867367928756
+        -1.1727476119995117,
+        46.1478186157547
     ],
     [
-        -11.953125,
-        -27.059125784374054
+        -1.1731553077697754,
+        46.14764022490594
     ],
     [
-        -11.6015625,
-        -20.96143961409684
+        -1.1736810207366943,
+        46.147313173515
     ],
     [
-        -9.84375,
-        -16.97274101999901
+        -1.1739277839660645,
+        46.14715708012068
     ],
     [
-        -7.3828125,
-        -12.211180191503997
+        -1.174163818359375,
+        46.14689692347982
     ],
     [
-        -7.3828125,
-        -3.162455530237848
+        -1.1743783950805662,
+        46.146547568342264
     ],
     [
-        -14.0625,
-        4.214943141390651
+        -1.1745929718017578,
+        46.146205644145844
     ],
     [
-        -20.0390625,
-        8.407168163601076
+        -1.1747002601623535,
+        46.145938049814966
     ],
     [
-        -20.7421875,
-        12.554563528593656
+        -1.1748826503753662,
+        46.14557382210777
     ],
     [
-        -18.6328125,
-        18.312810846425442
+        -1.175140142440796,
+        46.14512782571479
     ],
     [
-        -15.8203125,
-        23.885837699862005
+        -1.175462007522583,
+        46.14476359264681
     ],
     [
-        -11.25,
-        34.016241889667015
+        -1.1757087707519531,
+        46.144369623554134
     ],
     [
-        -13.7109375,
-        38.272688535980976
+        -1.176363229751587,
+        46.14368574598159
     ],
     [
-        -20.390625,
-        39.36827914916014
+        -1.1768460273742676,
+        46.14347760764285
     ],
     [
-        -26.3671875,
-        38.54816542304656
+        -1.1772429943084717,
+        46.14326946851718
     ],
     [
-        -32.34375,
-        34.016241889667015
+        -1.17753267288208,
+        46.14296469194918
     ]
 ];
 
@@ -273,8 +273,8 @@ const geojson : FeatureCollection = {
                 type: "LineString",
                 coordinates: [
                     [
-                        -22.8515625,
-                        34.59704151614417
+                        -1.1624586582183838,
+                        46.144674392344434
                     ],
                 ]
             }
@@ -298,11 +298,7 @@ mapView.addDataSource(geoJsonDataSource).then(() => {
 const clock = new THREE.Clock();
 
 let figure: MapAnchor<THREE.Group> | undefined;
-let mixer: THREE.AnimationMixer | undefined;
 const onLoad = (object: any) => {
-    mixer = new THREE.AnimationMixer(object);
-    console.log(object);
-
     figure = object as THREE.Group;
     figure.traverse((child: THREE.Object3D) => {
         child.renderOrder = 10000;
@@ -315,7 +311,7 @@ const onLoad = (object: any) => {
     figure.scale.set(1 * scale, 1 * scale, 1 * scale);
     figure.name = "guy";
 
-    figure.anchor = new GeoCoordinates(46.146875, -1.167189, 1);
+    figure.anchor = new GeoCoordinates(46.144674392344434, -1.1624586582183838);
 
     figure.overlay = true;
     mapView.mapAnchors.add(figure);
@@ -324,31 +320,31 @@ const onLoad = (object: any) => {
 const loader = new FBXLoader();
 loader.load("./3Dmarker/bote.fbx", onLoad);
 
-mapView.update();
+//mapView.update();
 
 
 
 // const marker = cube.randomCubePosition(mapView);
 // mapView.mapAnchors.add(marker);
 
-// let count = 0;
-// function markerMove() {
-//     if ((count < coordinates.length) && (geojson.features[0].geometry.type == "LineString")) {
-//         geoJsonDataProvider.updateInput(updateTrack(geojson));
-//         marker.anchor = updateMarkerPosition(count, coordinates);
-//         count++;
-//         mapView.update();
-//     }
-// }
+let count = 0;
+function markerMove() {
+    if ((count < coordinates.length) && (geojson.features[0].geometry.type == "LineString")) {
+        geoJsonDataProvider.updateInput(updateTrack(geojson));
+        figure.anchor = updateMarkerPosition(count, coordinates);
+        count++;
+        mapView.update();
+    }
+}
 
-// function updateTrack(geojson) {
-//     geojson.features[0].geometry.coordinates.push(coordinates[count]);
-//     return geojson;
-// }
+function updateTrack(geojson) {
+    geojson.features[0].geometry.coordinates.push(coordinates[count]);
+    return geojson;
+}
 
-// function updateMarkerPosition(count, coordinates) {
-//     return new GeoCoordinates(coordinates[count][1], coordinates[count][0]);
-// }
+function updateMarkerPosition(count, coordinates) {
+    return new GeoCoordinates(coordinates[count][1], coordinates[count][0]);
+}
 
-// mapView.update();
-// setInterval(markerMove, 5000);
+mapView.update();
+setInterval(markerMove, 5000);

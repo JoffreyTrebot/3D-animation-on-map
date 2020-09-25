@@ -17,7 +17,7 @@ export function createCube(): MapAnchor<THREE.Object3D> {
 
 
 export function randomCubePosition(mapView) {
-    const geoPosition = new GeoCoordinates(34.59704151614417, -22.8515625)
+    const geoPosition = new GeoCoordinates(46.144674392344434, -1.1624586582183838);
     geoPosition.altitude = 50;
 
     const cube = createCube();
