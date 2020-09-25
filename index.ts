@@ -30,7 +30,7 @@ window.addEventListener("resize", () => {
 });
 
 // center the camera to New York
-mapView.lookAt(new GeoCoordinates(49.4431, 1.0993), 150, 40, 0);
+mapView.lookAt(new GeoCoordinates(46.146875, -1.167189), 150, 40, 0);
 function getStyleSet(): StyleSet {
     return [
         {
@@ -308,36 +308,22 @@ const onLoad = (object: any) => {
         child.renderOrder = 10000;
     });
     figure.renderOrder = 10000;
-    figure.rotateX(Math.PI / 3);
+    figure.rotateX(179.5);
+    figure.rotateY(180)
+    figure.rotateZ(90);
     const scale = 0.1;
     figure.scale.set(1 * scale, 1 * scale, 1 * scale);
     figure.name = "guy";
 
-    // snippet:harp_gl_threejs_add_animated-object_add_to_scene.ts
-    figure.anchor = new GeoCoordinates(49.4431, 1.0993);
-    // Make sure the object is rendered on top of labels
+    figure.anchor = new GeoCoordinates(46.146875, -1.167189, 1);
+
     figure.overlay = true;
     mapView.mapAnchors.add(figure);
-    // end:harp_gl_threejs_add_animated-object_add_to_scene.ts
 };
 
 const loader = new FBXLoader();
-loader.load("jet.fbx", onLoad);
+loader.load("./3Dmarker/bote.fbx", onLoad);
 
-const onRender = (event: RenderEvent) => {
-    if (mixer) {
-        // snippet:harp_gl_threejs_add_animated-object_update_animation.ts
-        const delta = clock.getDelta();
-        mixer.update(delta);
-        // end:harp_gl_threejs_add_animated-object_update_animation.ts
-    }
-};
-
-mapView.addEventListener(MapViewEventNames.Render, onRender);
-// end:harp_gl_threejs_add_animated-object_add_listener.ts
-
-// snippet:harp_gl_threejs_add_animated-object_begin_animation.ts
-mapView.beginAnimation();
 mapView.update();
 
 
